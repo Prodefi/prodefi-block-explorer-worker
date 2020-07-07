@@ -85,7 +85,7 @@ class TransactionService {
             logger.info("Unique Adddresses Count: " + count)
             return count;
         }).catch(err => {
-            logger.error(`Get Unique Address error: ${error});`)
+            logger.error(`Get Unique Address error: ${err});`)
         });
     }
 
