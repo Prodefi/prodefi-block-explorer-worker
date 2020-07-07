@@ -81,8 +81,8 @@ class TransactionService {
     }
 
     getTotalAddresses = () => {
-        UniqueAddress.estimatedDocumentCount().exec().then((response: any) => {
-            return response;
+        UniqueAddress.estimatedDocumentCount().then(count => {
+            return count;
         });
     }
 
