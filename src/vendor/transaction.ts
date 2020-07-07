@@ -2,6 +2,7 @@ import { env } from "../config/global";
 import crypto from "crypto";
 import axios from "axios";
 import Tx from "../entity/db-tx";
+import UniqueAddress from "../entity/db-unique-adress";
 import { logger } from "../config/logger";
 import MissingTx from "../entity/db-missing-tx";
 import Block from "../entity/db-block";
@@ -79,6 +80,11 @@ class TransactionService {
         })
     }
 
+    getTotalAddresses = () => {
+        const total = UniqueAddress.estimatedDocumentCount().exec();
+        resolve(total);
+    }
+
     getSetSenderAndReceipentFromDate = (fromDate : number) => {
         const conditionFunction1 = Tx.aggregate([
             { $match: { timestamp: { $gt: new Date(fromDate) } } },
@@ -142,6 +148,14 @@ class TransactionService {
             axios.get(apiLink).then(response => {
                 if (response && response.data) {
                     Tx.create(response.data);
+
+                    try {
+                        UniqueAddress.create({address: response.data.tx.value.msg.value.from_address});
+                        UniqueAddress.create({address: response.data.tx.value.msg.value.to_address});
+                    } catch(error) {
+
+                    }
+
                     resolve(response.data);
                 }
             }).catch(err => {

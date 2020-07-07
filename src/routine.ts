@@ -12,6 +12,6 @@ export function registerRoutine(): void {
     getMissingTx();
     
     getNewTxFromLatestBlock();
-    updateAddressMemcache();
+    // updateAddressMemcache();
     // verifyUpdateAddressMemcache();
 }

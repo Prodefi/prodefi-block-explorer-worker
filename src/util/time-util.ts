@@ -2,7 +2,7 @@ export class TimeUtility {
 
     public static getBeginTodayUTC(): number {
         const now = new Date();
-        return Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), 0, 0, 0, 0);
+        return Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), 0, 0, 0);
     }
 
     public static getBeginEpochTime(): number {

@@ -69,6 +69,7 @@ export function repairMemCache(){
         .concat("-")
         .concat((now.getMonth() + 1).toString())
         .concat("-").concat(now.getDay().toString()) 
+        .concat("_").concat(now.getHours().toString()).concat("H")
         .concat("_UTC_addresses")
   
   txServiceInstance.getSetSenderAndReceipentToDate(TimeUtility.getBeginTodayUTC()).then(res => {
