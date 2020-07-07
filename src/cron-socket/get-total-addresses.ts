@@ -20,7 +20,7 @@ export function getTotalAddress(io: createSocketIO.Server): CronJob {
 
             let total = txServiceInstance.getTotalAddresses();
 
-            io.to(env.SOCKET_ROOM).emit("totalAddresses", 119);
+            io.to(env.SOCKET_ROOM).emit("totalAddresses", total);
 
             // let cacheAddress = cache.get(memCacheKeyBeginToday);
             // if (cacheAddress != null) {
