@@ -82,7 +82,10 @@ class TransactionService {
 
     getTotalAddresses = () => {
         UniqueAddress.estimatedDocumentCount().then(count => {
+            logger.info("Unique Adddresses Count: " + count)
             return count;
+        }).catch(err => {
+            logger.error(`Get Unique Address error: ${error});`)
         });
     }
 
