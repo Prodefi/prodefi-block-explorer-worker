@@ -154,7 +154,7 @@ class TransactionService {
                         UniqueAddress.create({address: response.data.tx.value.msg.value.from_address});
                         UniqueAddress.create({address: response.data.tx.value.msg.value.to_address});
                     } catch(error) {
-
+                        logger.error(`Add Unique Address error: ${error});`)
                     }
 
                     resolve(response.data);
