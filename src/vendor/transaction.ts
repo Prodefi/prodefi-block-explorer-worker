@@ -81,12 +81,16 @@ class TransactionService {
     }
 
     getTotalAddresses = () => {
-        UniqueAddress.estimatedDocumentCount().then(count => {
-            logger.info("Unique Adddresses Count: " + count)
-            return count;
-        }).catch(err => {
-            logger.error(`Get Unique Address error: ${err});`)
-        });
+        return new Promise<any | null>((resolve, reject) => {
+            UniqueAddress.estimatedDocumentCount().then(count => {
+                logger.info("Unique Adddresses Count: " + count)
+                resolve(count);
+            }).catch(err => {
+                logger.error(`Get Unique Address error: ${err});`)
+            });
+        })
+
+        
     }
 
     getSetSenderAndReceipentFromDate = (fromDate : number) => {

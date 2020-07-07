@@ -18,9 +18,11 @@ export function getTotalAddress(io: createSocketIO.Server): CronJob {
         cronTime: '*/1 * * * * *', // interval per second
         onTick: () => {
 
-            let total = txServiceInstance.getTotalAddresses();
+            txServiceInstance.getTotalAddresses().then(res => {
+                io.to(env.SOCKET_ROOM).emit("totalAddresses", res);
+            });
 
-            io.to(env.SOCKET_ROOM).emit("totalAddresses", total);
+            
 
             // let cacheAddress = cache.get(memCacheKeyBeginToday);
             // if (cacheAddress != null) {
