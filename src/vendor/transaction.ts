@@ -2,7 +2,7 @@ import { env } from "../config/global";
 import crypto from "crypto";
 import axios from "axios";
 import Tx from "../entity/db-tx";
-import UniqueAddress from "../entity/db-unique-adress";
+import UniqueAddress from "../entity/db-unique-address";
 import { logger } from "../config/logger";
 import MissingTx from "../entity/db-missing-tx";
 import Block from "../entity/db-block";
@@ -82,7 +82,8 @@ class TransactionService {
 
     getTotalAddresses = () => {
         const total = UniqueAddress.estimatedDocumentCount().exec();
-        resolve(total);
+
+        return total;
     }
 
     getSetSenderAndReceipentFromDate = (fromDate : number) => {
