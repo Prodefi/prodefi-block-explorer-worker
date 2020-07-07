@@ -81,9 +81,9 @@ class TransactionService {
     }
 
     getTotalAddresses = () => {
-        const total = UniqueAddress.count().exec();
-
-        return total;
+        UniqueAddress.estimatedDocumentCount().exec().then((response: any) => {
+            return response;
+        });
     }
 
     getSetSenderAndReceipentFromDate = (fromDate : number) => {
